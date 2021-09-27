@@ -1,0 +1,43 @@
+<form [formGroup]="tradeForm" id="form">
+    <mat-form-field appearance="fill">
+        <mat-label>Entry date: </mat-label>
+        <input id="entry-date" formControlName="entryDate" matInput [matDatepicker]="datepickerentry">
+        <div *ngIf="tradeForm.controls.entryDate.errors?.badValue"
+            style="color:red;font-style: italic; margin-top: 5px;">Incorrect date. Entry date should be less than exit
+            date.</div>
+        <mat-datepicker-toggle matSuffix [for]="datepickerentry"></mat-datepicker-toggle>
+        <mat-datepicker #datepickerentry>
+            <mat-datepicker-actions>
+                <button mat-button matDatepickerCancel>Cancel</button>
+                <button mat-raised-button color="primary" matDatepickerApply>Apply</button>
+            </mat-datepicker-actions>
+        </mat-datepicker>
+    </mat-form-field>
+    <mat-form-field appearance="fill">
+        <mat-label>Entry price: </mat-label>
+        <input id="entry-price" type="text" matInput formControlName="entryPrice">
+    </mat-form-field>
+    <mat-form-field appearance="fill">
+        <mat-label>Exit date: </mat-label>
+        <input id="exit-date" formControlName="exitDate" matInput [matDatepicker]="datepickerexit">
+        <div *ngIf="tradeForm.controls.exitDate.errors?.badValue"
+            style="color:red;font-style: italic; margin-top: 5px;">Incorrect date. Exit date should be greater than
+            entry date.</div>
+        <mat-datepicker-toggle matSuffix [for]="datepickerexit"></mat-datepicker-toggle>
+        <mat-datepicker #datepickerexit>
+            <mat-datepicker-actions>
+                <button mat-button matDatepickerCancel>Cancel</button>
+                <button mat-raised-button color="primary" matDatepickerApply>Apply</button>
+            </mat-datepicker-actions>
+        </mat-datepicker>
+    </mat-form-field>
+    <mat-form-field appearance="fill">
+        <mat-label>Exit price: </mat-label>
+        <input id="exit-price" type="text" matInput formControlName="exitPrice">
+    </mat-form-field>
+
+    <div class="button-container">
+        <button mat-raised-button (click)="dialogRef.close()">Cancel</button>
+        <button mat-raised-button color="primary" (click)="save()">Save</button>
+    </div>
+</form>
